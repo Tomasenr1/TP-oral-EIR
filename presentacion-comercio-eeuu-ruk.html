@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comercio Bilateral EEUU – Reino Unido</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --gold: #c9a84c;
+    --gold-light: #e8c97e;
+    --cream: #f5f0e8;
+    --muted: #8899bb;
+    --accent: #4a90d9;
+    --red: #c94a4a;
+    --green: #4ac97a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #080e1c; font-family: 'DM Sans', sans-serif; color: #fff; display: flex; flex-direction: column; align-items: center; min-height: 100vh; overflow-x: hidden; }
+
+  /* NAV */
+  .nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:12px 32px; background:rgba(8,14,28,0.94); backdrop-filter:blur(12px); border-bottom:1px solid rgba(201,168,76,0.18); }
+  .nav-brand { font-family:'Playfair Display',serif; font-size:12px; letter-spacing:0.12em; color:var(--gold); text-transform:uppercase; }
+  .nav-right { display:flex; align-items:center; gap:10px; }
+  .btn { background:none; border:1px solid rgba(201,168,76,0.35); color:var(--gold-light); font-family:'DM Mono',monospace; font-size:11px; padding:5px 14px; cursor:pointer; letter-spacing:0.08em; transition:all .2s; border-radius:2px; }
+  .btn:hover { background:rgba(201,168,76,0.12); border-color:var(--gold); }
+  .counter { font-family:'DM Mono',monospace; font-size:11px; color:var(--muted); min-width:48px; text-align:center; }
+
+  /* PROGRESS */
+  .pbar { position:fixed; top:48px; left:0; right:0; z-index:99; height:2px; background:rgba(255,255,255,0.05); }
+  .pfill { height:100%; background:linear-gradient(90deg,var(--gold),var(--accent)); transition:width 0.35s ease; }
+
+  /* STAGE */
+  .stage { margin-top:66px; width:100%; display:flex; justify-content:center; padding:28px 20px 80px; }
+
+  /* SLIDE */
+  .slide { display:none; width:960px; min-height:560px; position:relative; background:var(--navy); border:1px solid rgba(201,168,76,0.18); box-shadow:0 40px 100px rgba(0,0,0,0.65); overflow:hidden; animation:fadeUp .4s cubic-bezier(.22,.68,0,1.15) both; }
+  .slide.active { display:block; }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(16px) scale(.975); } to { opacity:1; transform:none; } }
+  .slide::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:linear-gradient(180deg,var(--gold) 0%,transparent 100%); opacity:.5; }
+
+  /* INNER */
+  .inner { padding:44px 56px 40px 58px; position:relative; z-index:2; }
+
+  /* TYPOGRAPHY */
+  .tag { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold); opacity:.8; margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+  .tag::after { content:''; flex:1; max-width:50px; height:1px; background:var(--gold); opacity:.3; }
+  .title { font-family:'Playfair Display',serif; font-size:33px; font-weight:900; line-height:1.1; color:var(--cream); margin-bottom:5px; }
+  .subtitle { font-size:12.5px; color:var(--muted); margin-bottom:26px; font-weight:300; }
+
+  /* GRID */
+  .col2 { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .col3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+
+  /* CARDS */
+  .card { background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:4px; padding:17px 19px; }
+  .card.gb { border-left:3px solid var(--gold); }
+  .card.bl { border-left:3px solid var(--accent); }
+  .card.rd { border-left:3px solid var(--red); }
+  .card.gn { border-left:3px solid var(--green); }
+  .card.tb  { border-top:3px solid var(--gold); }
+  .card.tbl { border-top:3px solid var(--accent); }
+  .card.tgn { border-top:3px solid var(--green); }
+  .card.trd { border-top:3px solid var(--red); }
+  .clabel { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted); margin-bottom:7px; }
+  .cval { font-family:'Playfair Display',serif; font-size:25px; font-weight:700; color:var(--cream); }
+  .cval.sm { font-size:16px; }
+  .cdesc { font-size:11.5px; color:var(--muted); margin-top:6px; line-height:1.5; }
+
+  /* TIMELINE */
+  .tl { display:flex; flex-direction:column; gap:13px; }
+  .tl-row { display:flex; gap:13px; align-items:flex-start; }
+  .tl-dot { width:9px; height:9px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:4px; box-shadow:0 0 7px rgba(201,168,76,.5); }
+  .tl-dot.b { background:var(--accent); box-shadow:0 0 7px rgba(74,144,217,.5); }
+  .tl-dot.g { background:var(--green); box-shadow:0 0 7px rgba(74,201,122,.5); }
+  .tl-year { font-family:'DM Mono',monospace; font-size:10px; color:var(--gold); flex-shrink:0; width:46px; }
+  .tl-text { font-size:12.5px; color:var(--cream); line-height:1.5; }
+  .tl-text strong { color:var(--gold-light); }
+
+  /* TABLE */
+  .idx-table { width:100%; border-collapse:collapse; }
+  .idx-table th { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.12em; color:var(--muted); text-transform:uppercase; padding:6px 9px; border-bottom:1px solid rgba(255,255,255,0.1); text-align:left; }
+  .idx-table td { font-size:12px; padding:7px 9px; border-bottom:1px solid rgba(255,255,255,0.05); color:var(--cream); }
+  .idx-table tr:last-child td { border-bottom:none; }
+  .num { font-family:'DM Mono',monospace; font-size:11px; text-align:right; }
+  .hi { color:var(--green); } .lo { color:var(--red); } .md { color:var(--gold); }
+
+  /* STAT BAR */
+  .srow { display:flex; align-items:center; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.06); gap:11px; }
+  .srow:last-child { border-bottom:none; }
+  .sflag { font-size:17px; flex-shrink:0; }
+  .sname { font-size:11px; color:var(--muted); width:90px; flex-shrink:0; }
+  .swrap { flex:1; background:rgba(255,255,255,0.06); height:5px; border-radius:3px; overflow:hidden; }
+  .sbar { height:100%; border-radius:3px; }
+  .sval { font-family:'DM Mono',monospace; font-size:11px; color:var(--cream); width:48px; text-align:right; }
+
+  /* PILLAR */
+  .pillar { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-top:3px solid var(--gold); border-radius:4px; padding:16px 14px; text-align:center; }
+  .pillar-icon { font-size:24px; margin-bottom:8px; }
+  .pillar-title { font-family:'Playfair Display',serif; font-size:13px; font-weight:700; color:var(--cream); margin-bottom:7px; }
+  .pillar-text { font-size:11px; color:var(--muted); line-height:1.55; }
+
+  /* HIGHLIGHT */
+  .hl { background:linear-gradient(135deg,rgba(74,144,217,0.08),rgba(201,168,76,0.06)); border:1px solid rgba(74,144,217,0.2); border-radius:4px; padding:13px 17px; }
+  .hl p { font-size:12px; color:var(--cream); line-height:1.65; }
+  .hl p strong { color:var(--accent); }
+
+  /* QUOTE */
+  .quote { border-left:3px solid var(--gold); padding-left:17px; margin:15px 0; }
+  .quote p { font-family:'Playfair Display',serif; font-size:14.5px; font-style:italic; color:var(--cream); line-height:1.6; }
+  .quote small { display:block; font-size:10px; color:var(--muted); margin-top:6px; }
+
+  /* CONCLUSION */
+  .cbox { background:rgba(201,168,76,0.06); border:1px solid rgba(201,168,76,0.2); border-radius:4px; padding:17px 21px; margin-bottom:12px; }
+  .cbox-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:0.15em; color:var(--gold); margin-bottom:7px; }
+  .cbox p { font-size:12px; color:var(--cream); line-height:1.7; }
+  .cbox p strong { color:var(--gold-light); }
+
+  /* MINI BARS */
+  .minibars { display:flex; align-items:flex-end; gap:5px; height:72px; margin:10px 0 4px; }
+  .mbar-grp { flex:1; display:flex; flex-direction:column; align-items:center; gap:2px; }
+  .mbar { width:100%; border-radius:2px 2px 0 0; }
+  .mbar.us { background:linear-gradient(180deg,var(--accent),rgba(74,144,217,.35)); }
+  .mbar.uk { background:linear-gradient(180deg,var(--gold),rgba(201,168,76,.35)); }
+  .mbar-yr { font-family:'DM Mono',monospace; font-size:7.5px; color:var(--muted); }
+  .legend { display:flex; gap:13px; }
+  .leg { display:flex; align-items:center; gap:5px; font-size:10px; color:var(--muted); }
+  .leg-dot { width:7px; height:7px; border-radius:50%; }
+
+  /* VCR BAR */
+  .vcr-row { margin-bottom:9px; }
+  .vcr-label { display:flex; justify-content:space-between; margin-bottom:3px; font-size:11.5px; color:var(--cream); }
+  .vcr-label span { font-family:'DM Mono',monospace; font-size:10px; }
+  .vcr-track { background:rgba(255,255,255,0.06); height:6px; border-radius:3px; overflow:hidden; }
+  .vcr-fill { height:100%; border-radius:3px; }
+
+  /* COVER */
+  .cover { background:linear-gradient(135deg,#0a1628 0%,#0e1f3d 50%,#0a1628 100%); min-height:560px; position:relative; overflow:hidden; display:flex; flex-direction:column; justify-content:center; }
+  .c-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(201,168,76,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,0.04) 1px,transparent 1px); background-size:48px 48px; }
+  .c-circle { position:absolute; right:-80px; top:50%; transform:translateY(-50%); width:420px; height:420px; border-radius:50%; background:radial-gradient(ellipse,rgba(74,144,217,0.08) 0%,transparent 65%); border:1px solid rgba(74,144,217,0.12); }
+  .c-ring { position:absolute; right:20px; top:50%; transform:translateY(-50%); width:280px; height:280px; border-radius:50%; border:1px solid rgba(201,168,76,0.12); }
+  .c-inner { padding:52px 56px; position:relative; z-index:2; }
+  .c-eye { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; opacity:.85; }
+  .c-title { font-family:'Playfair Display',serif; font-size:48px; font-weight:900; line-height:1.05; color:var(--cream); max-width:540px; }
+  .c-title em { font-style:italic; color:var(--gold-light); }
+  .c-div { width:58px; height:2px; background:linear-gradient(90deg,var(--gold),transparent); margin:22px 0; }
+  .c-meta { font-size:12px; color:var(--muted); line-height:1.8; }
+  .c-meta strong { color:var(--cream); }
+  .c-flags { font-size:26px; margin-top:22px; letter-spacing:6px; }
+
+  /* SECTION */
+  .sec { background:linear-gradient(135deg,#0d1f3e 0%,#0a1628 100%); min-height:560px; position:relative; overflow:hidden; display:flex; }
+  .sec-num { writing-mode:vertical-rl; font-family:'Playfair Display',serif; font-size:120px; font-weight:900; color:rgba(201,168,76,0.06); position:absolute; right:40px; top:50%; transform:translateY(-50%) rotate(180deg); user-select:none; letter-spacing:-4px; }
+  .sec-in { padding:52px 56px; position:relative; z-index:2; display:flex; flex-direction:column; justify-content:center; }
+  .sec-badge { display:inline-flex; align-items:center; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:#0a1628; background:var(--gold); padding:5px 12px; border-radius:2px; margin-bottom:22px; width:fit-content; }
+  .sec-badge.red { background:var(--red); color:#fff; }
+  .sec-badge.green { background:var(--green); color:#0a1628; }
+  .sec-title { font-family:'Playfair Display',serif; font-size:40px; font-weight:900; line-height:1.1; color:var(--cream); max-width:480px; margin-bottom:16px; }
+  .sec-topics { display:flex; flex-direction:column; gap:9px; margin-top:18px; }
+  .stopic { display:flex; align-items:center; gap:10px; font-size:12.5px; color:var(--cream); }
+  .stopic::before { content:'→'; font-family:'DM Mono',monospace; font-size:10px; color:var(--gold); }
+
+  /* DOTS */
+  .dots-nav { position:fixed; bottom:22px; left:50%; transform:translateX(-50%); display:flex; gap:6px; align-items:center; background:rgba(8,14,28,0.88); backdrop-filter:blur(10px); padding:7px 13px; border-radius:24px; border:1px solid rgba(255,255,255,0.07); }
+  .dot { width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,0.2); cursor:pointer; transition:all .2s; flex-shrink:0; }
+  .dot.active { background:var(--gold); transform:scale(1.35); }
+  .kbd-hint { position:fixed; bottom:58px; right:26px; font-family:'DM Mono',monospace; font-size:9px; color:rgba(255,255,255,0.18); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-brand">UADE · Comercio Internacional · Grupo 5</div>
+  <div class="nav-right">
+    <button class="btn" onclick="prevSlide()">← Prev</button>
+    <div class="counter" id="counter">1 / 18</div>
+    <button class="btn" onclick="nextSlide()">Next →</button>
+  </div>
+</nav>
+<div class="pbar"><div class="pfill" id="prog" style="width:5.6%"></div></div>
+
+<div class="stage">
+
+<!-- ─── 0 · PORTADA ─── -->
+<div class="slide active" id="s0">
+  <div class="cover">
+    <div class="c-grid"></div><div class="c-circle"></div><div class="c-ring"></div>
+    <div class="c-inner">
+      <div class="c-eye">Informe de Comercio Bilateral · 2014 – 2025</div>
+      <div class="c-title">Estados Unidos<br>& <em>Reino Unido</em></div>
+      <div class="c-div"></div>
+      <div class="c-meta"><strong>Grupo N.º 5</strong><br>Acuña, Nahuel &nbsp;·&nbsp; Damacio, Debora &nbsp;·&nbsp; Mainete, Ariana &nbsp;·&nbsp; Rotllant, Tomás</div>
+      <div class="c-flags">🇺🇸 🇬🇧</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 1 · AGENDA ─── -->
+<div class="slide" id="s1">
+  <div class="inner">
+    <div class="tag">Hoja de ruta</div>
+    <div class="title">Estructura de la presentación</div>
+    <div class="subtitle">Cuatro bloques temáticos</div>
+    <div class="col2">
+      <div>
+        <div class="card gb" style="margin-bottom:12px;">
+          <div class="clabel">Bloque 1</div>
+          <div class="cval sm">Introducción y Evolución Comercial</div>
+          <div class="cdesc">Objetivos, contexto histórico, balanza comercial e índice de intensidad.</div>
+        </div>
+        <div class="card bl">
+          <div class="clabel">Bloque 2</div>
+          <div class="cval sm">Inserción Mundial y Estructura</div>
+          <div class="cdesc">Grados de apertura, complementariedad y concentración (HHI).</div>
+        </div>
+      </div>
+      <div>
+        <div class="card rd" style="margin-bottom:12px;">
+          <div class="clabel">Bloque 3</div>
+          <div class="cval sm">Composición e Introducción Teórica</div>
+          <div class="cdesc">VCR por sector, índice Grubel-Lloyd y descarte de modelos clásicos.</div>
+        </div>
+        <div class="card gn">
+          <div class="clabel">Bloque 4</div>
+          <div class="cval sm">Modelo Teórico y Conclusiones</div>
+          <div class="cdesc">Nueva Teoría del Comercio (Krugman), Melitz y cierre del informe.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 2 · SECCIÓN 1 ─── -->
+<div class="slide" id="s2">
+  <div class="sec">
+    <div class="sec-num">01</div>
+    <div class="sec-in">
+      <div class="sec-badge">Bloque 1</div>
+      <div class="sec-title">Introducción y<br>Evolución Comercial</div>
+      <div class="sec-topics">
+        <div class="stopic">Objetivos del informe y preguntas guía</div>
+        <div class="stopic">Del aislamiento a la integración</div>
+        <div class="stopic">Dinámica de la balanza comercial 2014–2025</div>
+        <div class="stopic">Índice de Intensidad Comercial (IC)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 3 · PREGUNTAS GUÍA ─── -->
+<div class="slide" id="s3">
+  <div class="inner">
+    <div class="tag">Bloque 1 · Introducción</div>
+    <div class="title">Preguntas que guían el informe</div>
+    <div class="subtitle">Elaborado a pedido de la Embajada de EEUU en el Reino Unido</div>
+    <div class="col2" style="margin-top:4px;">
+      <div class="card gb" style="padding:22px 20px;">
+        <div class="clabel">Pregunta 1</div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;color:var(--cream);line-height:1.55;margin-top:10px;">¿Cuáles son las <strong style="color:var(--gold-light)">características estructurales</strong> y la evolución reciente del comercio bilateral entre estas dos potencias?</div>
+      </div>
+      <div class="card bl" style="padding:22px 20px;">
+        <div class="clabel">Pregunta 2</div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;color:var(--cream);line-height:1.55;margin-top:10px;">¿Qué <strong style="color:var(--accent)">patrón de comercio</strong> predomina y qué modelo teórico lo explica de mejor manera?</div>
+      </div>
+    </div>
+    <div class="hl" style="margin-top:16px;">
+      <p>Análisis empírico sobre el período <strong>2014–2025</strong> con datos de Trade Map. Se calcularon índices de intensidad, apertura, complementariedad, concentración (HHI), comercio intraindustrial (Grubel-Lloyd) y ventajas comparativas reveladas.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 4 · BALANZA COMERCIAL ─── -->
+<div class="slide" id="s4">
+  <div class="inner">
+    <div class="tag">Bloque 1 · Balanza</div>
+    <div class="title">Balanza Comercial: el gran giro</div>
+    <div class="subtitle">Dos etapas distintas en la última década</div>
+    <div class="col2">
+      <div>
+        <div class="tl">
+          <div class="tl-row"><div class="tl-dot"></div><div class="tl-year">2014–20</div><div class="tl-text">🇬🇧 exportaba <strong>más</strong> que importaba.<br>UK: USD 64.197 M &nbsp;|&nbsp; US: USD 53.808 M</div></div>
+          <div class="tl-row"><div class="tl-dot b"></div><div class="tl-year">2022</div><div class="tl-text">Punto de inflexión: EEUU supera a RU.<br>US: <strong>USD 77.300 M</strong> &nbsp;|&nbsp; UK: USD 63.818 M</div></div>
+          <div class="tl-row"><div class="tl-dot g"></div><div class="tl-year">2025</div><div class="tl-text">Brecha en máximo histórico.<br>US: <strong>USD 97.009 M</strong> &nbsp;|&nbsp; UK: USD 86.946 M</div></div>
+        </div>
+      </div>
+      <div class="card" style="padding:15px 13px;">
+        <div class="clabel">Exportaciones bilaterales seleccionadas (USD)</div>
+        <div class="minibars">
+          <div class="mbar-grp"><div class="mbar us" style="height:33px"></div><div class="mbar uk" style="height:38px"></div><div class="mbar-yr">2014</div></div>
+          <div class="mbar-grp"><div class="mbar us" style="height:36px"></div><div class="mbar uk" style="height:42px"></div><div class="mbar-yr">2016</div></div>
+          <div class="mbar-grp"><div class="mbar us" style="height:39px"></div><div class="mbar uk" style="height:42px"></div><div class="mbar-yr">2018</div></div>
+          <div class="mbar-grp"><div class="mbar us" style="height:30px"></div><div class="mbar uk" style="height:33px"></div><div class="mbar-yr">2020</div></div>
+          <div class="mbar-grp"><div class="mbar us" style="height:49px"></div><div class="mbar uk" style="height:35px"></div><div class="mbar-yr">2022</div></div>
+          <div class="mbar-grp"><div class="mbar us" style="height:62px"></div><div class="mbar uk" style="height:54px"></div><div class="mbar-yr">2025</div></div>
+        </div>
+        <div class="legend"><div class="leg"><div class="leg-dot" style="background:var(--accent)"></div>🇺🇸 EEUU</div><div class="leg"><div class="leg-dot" style="background:var(--gold)"></div>🇬🇧 RU</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 5 · GRÁFICO EXPORTACIONES ─── -->
+<div class="slide" id="s5">
+  <div class="inner" style="padding-bottom:26px;">
+    <div class="tag">Gráfico · Evolución</div>
+    <div class="title" style="font-size:27px;">Exportaciones bilaterales 2014–2025</div>
+    <div class="subtitle">Valores en miles de USD · Punto de inflexión en 2022</div>
+    <svg viewBox="0 0 840 280" style="width:100%;margin-top:6px;">
+      <line x1="52" y1="18" x2="52" y2="232" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <line x1="52" y1="232" x2="828" y2="232" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <line x1="52" y1="180" x2="828" y2="180" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="52" y1="127" x2="828" y2="127" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="52" y1="73"  x2="828" y2="73"  stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="45" y="235" fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">0</text>
+      <text x="45" y="183" fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">40B</text>
+      <text x="45" y="130" fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">70B</text>
+      <text x="45" y="76"  fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">100B</text>
+      <!-- EEUU: y = 232 - (val/100000)*159 -->
+      <polyline points="52,148 122,139 192,146 262,144 332,137 402,143 472,151 542,142 612,107 682,112 752,104 822,79"
+        fill="none" stroke="#4a90d9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+        stroke-dasharray="1200" stroke-dashoffset="1200">
+        <animate attributeName="stroke-dashoffset" from="1200" to="0" dur="1.5s" fill="freeze" begin="0.1s"/>
+      </polyline>
+      <!-- RU: 64197,69381,61568,59098,65985,73928,57379,59301,63818,71175,71318,86946 -->
+      <polyline points="52,130 122,122 192,135 262,138 332,127 402,114 472,141 542,138 612,130 682,120 752,120 822,94"
+        fill="none" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+        stroke-dasharray="1200" stroke-dashoffset="1200">
+        <animate attributeName="stroke-dashoffset" from="1200" to="0" dur="1.5s" fill="freeze" begin="0.4s"/>
+      </polyline>
+      <!-- inflection -->
+      <line x1="612" y1="28" x2="612" y2="232" stroke="rgba(201,168,76,0.25)" stroke-width="1" stroke-dasharray="3,3"/>
+      <text x="612" y="24" fill="#c9a84c" font-size="9" text-anchor="middle" font-family="monospace">2022 ↑</text>
+      <!-- endpoints -->
+      <circle cx="822" cy="79" r="4" fill="#4a90d9"/>
+      <text x="822" y="72" fill="#4a90d9" font-size="9" text-anchor="middle" font-family="monospace">97B</text>
+      <circle cx="822" cy="94" r="4" fill="#c9a84c"/>
+      <text x="822" y="108" fill="#c9a84c" font-size="9" text-anchor="middle" font-family="monospace">86.9B</text>
+      <!-- x labels -->
+      <text x="52"  y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2014</text>
+      <text x="192" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2016</text>
+      <text x="332" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2018</text>
+      <text x="472" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2020</text>
+      <text x="612" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2022</text>
+      <text x="752" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2024</text>
+      <rect x="560" y="262" width="9" height="9" rx="1" fill="#4a90d9"/>
+      <text x="575" y="271" fill="#8899bb" font-size="10" font-family="monospace">🇺🇸 EEUU</text>
+      <rect x="650" y="262" width="9" height="9" rx="1" fill="#c9a84c"/>
+      <text x="665" y="271" fill="#8899bb" font-size="10" font-family="monospace">🇬🇧 RU</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ─── 6 · INTENSIDAD COMERCIAL ─── -->
+<div class="slide" id="s6">
+  <div class="inner">
+    <div class="tag">Bloque 1 · Índice IC</div>
+    <div class="title">Índice de Intensidad Comercial</div>
+    <div class="subtitle">¿Comercia cada país lo que se esperaría dado su peso en la economía mundial?</div>
+    <div class="col2">
+      <div>
+        <table class="idx-table">
+          <thead><tr><th>Año</th><th style="text-align:right">IC 🇬🇧→🇺🇸</th><th style="text-align:right">IC 🇺🇸→🇬🇧</th></tr></thead>
+          <tbody>
+            <tr><td>2014</td><td class="num md">0,98</td><td class="num lo">0,90</td></tr>
+            <tr><td>2016</td><td class="num md">1,06</td><td class="num lo">0,95</td></tr>
+            <tr><td>2018</td><td class="num md">1,00</td><td class="num hi">1,15</td></tr>
+            <tr><td>2020</td><td class="num md">1,04</td><td class="num hi">1,14</td></tr>
+            <tr><td>2022</td><td class="num lo">0,88</td><td class="num hi">1,13</td></tr>
+            <tr><td>2025</td><td class="num lo">0,89</td><td class="num hi">1,14</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card gb">
+          <div class="clabel">🇬🇧 RU hacia EEUU</div>
+          <div class="cdesc" style="font-size:12px;margin-top:4px;">Comportamiento <strong style="color:var(--gold-light)">fluctuante y a la baja</strong>. En 2025: IC = 0,89 → RU comercia <em>menos</em> de lo esperado con EEUU.</div>
+        </div>
+        <div class="card bl">
+          <div class="clabel">🇺🇸 EEUU hacia RU</div>
+          <div class="cdesc" style="font-size:12px;margin-top:4px;"><strong style="color:var(--accent)">Sesgo positivo consolidado</strong> desde 2018 (IC &gt; 1,10). EEUU exporta a RU por encima de lo esperado según la participación británica en la demanda mundial.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 7 · SECCIÓN 2 ─── -->
+<div class="slide" id="s7">
+  <div class="sec">
+    <div class="sec-num">02</div>
+    <div class="sec-in">
+      <div class="sec-badge">Bloque 2</div>
+      <div class="sec-title">Inserción Mundial y<br>Estructura Comercial</div>
+      <div class="sec-topics">
+        <div class="stopic">Grados de apertura: EEUU vs. RU</div>
+        <div class="stopic">¿Proteccionismo o tamaño de mercado?</div>
+        <div class="stopic">Complementariedad comercial</div>
+        <div class="stopic">Diversificación exportadora (HHI)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 8 · APERTURA + HHI ─── -->
+<div class="slide" id="s8">
+  <div class="inner">
+    <div class="tag">Bloque 2 · Apertura e HHI</div>
+    <div class="title">Apertura, Complementariedad y Concentración</div>
+    <div class="subtitle">Dos trayectorias muy distintas — una explicación estructural</div>
+    <div class="col3" style="margin-top:8px;">
+      <div class="card gb">
+        <div class="clabel">Índice de apertura</div>
+        <div style="margin-top:9px;">
+          <div class="srow"><div class="sflag">🇺🇸</div><div class="sname">EEUU 2025</div><div class="swrap"><div class="sbar" style="width:25%;background:var(--accent);"></div></div><div class="sval" style="color:var(--accent)">25,2%</div></div>
+          <div class="srow"><div class="sflag">🇬🇧</div><div class="sname">RU 2025</div><div class="swrap"><div class="sbar" style="width:67%;background:var(--gold);"></div></div><div class="sval" style="color:var(--gold)">67,4%</div></div>
+          <div class="srow"><div class="sflag">🇬🇧</div><div class="sname">RU máx. 2022</div><div class="swrap"><div class="sbar" style="width:71%;background:var(--gold-light);"></div></div><div class="sval" style="color:var(--gold-light)">71,3%</div></div>
+        </div>
+        <div class="cdesc" style="margin-top:9px;border-top:1px solid rgba(255,255,255,0.07);padding-top:9px;">⚠️ La diferencia <em>no</em> implica proteccionismo; responde al <strong>tamaño relativo</strong> de cada economía.</div>
+      </div>
+      <div class="card bl">
+        <div class="clabel">Complementariedad (ICC)</div>
+        <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px;">
+          <div><div style="font-size:10px;color:var(--muted);">🇬🇧 RU (rango)</div><div style="font-family:'Playfair Display',serif;font-size:21px;color:var(--cream);">0,49 – 0,57</div><div style="font-size:10px;color:var(--muted);">Alta y estable</div></div>
+          <div><div style="font-size:10px;color:var(--muted);">🇺🇸 EEUU (rango)</div><div style="font-family:'Playfair Display',serif;font-size:21px;color:var(--cream);">0,50 – 0,55</div><div style="font-size:10px;color:var(--muted);">Estabilidad similar</div></div>
+        </div>
+      </div>
+      <div class="card gn">
+        <div class="clabel">Índice HHI (concentración)</div>
+        <div style="margin-top:10px;display:flex;flex-direction:column;gap:10px;">
+          <div><div style="font-size:10px;color:var(--muted);">🇺🇸 EEUU (rango)</div><div style="font-family:'Playfair Display',serif;font-size:21px;color:var(--green);">0,094 – 0,123</div></div>
+          <div><div style="font-size:10px;color:var(--muted);">🇬🇧 RU (rango)</div><div style="font-family:'Playfair Display',serif;font-size:21px;color:var(--green);">0,093 – 0,195</div></div>
+        </div>
+        <div class="cdesc" style="margin-top:8px;">Canastas exportadoras <strong style="color:var(--green)">altamente diversificadas</strong>.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 9 · GRÁFICO APERTURA ─── -->
+<div class="slide" id="s9">
+  <div class="inner" style="padding-bottom:26px;">
+    <div class="tag">Gráfico · Apertura</div>
+    <div class="title" style="font-size:27px;">Índice de Apertura Comercial 2015–2025</div>
+    <div class="subtitle">EEUU bajo y estable &nbsp;·&nbsp; RU alto y volátil — ambos responden al tamaño del mercado</div>
+    <svg viewBox="0 0 840 280" style="width:100%;margin-top:6px;">
+      <line x1="52" y1="18" x2="52" y2="232" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <line x1="52" y1="232" x2="828" y2="232" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <line x1="52" y1="183" x2="828" y2="183" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="52" y1="130" x2="828" y2="130" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="52" y1="76"  x2="828" y2="76"  stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <text x="45" y="235" fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">0%</text>
+      <text x="45" y="186" fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">28%</text>
+      <text x="45" y="133" fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">55%</text>
+      <text x="45" y="79"  fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">80%</text>
+      <!-- RU: y=232-(val/80)*159 -->
+      <polygon points="52,118 130,113 208,104 286,101 364,101 441,113 519,113 597,89 675,97 752,99 828,99 828,232 52,232" fill="rgba(201,168,76,0.05)"/>
+      <polyline points="52,118 130,113 208,104 286,101 364,101 441,113 519,113 597,89 675,97 752,99 828,99"
+        fill="none" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+        stroke-dasharray="1200" stroke-dashoffset="1200">
+        <animate attributeName="stroke-dashoffset" from="1200" to="0" dur="1.5s" fill="freeze" begin="0.1s"/>
+      </polyline>
+      <!-- EEUU: y=232-(val/80)*159 (max ~27.4) -->
+      <polygon points="52,178 130,180 208,178 286,177 364,179 441,185 519,181 597,177 675,181 752,183 828,181 828,232 52,232" fill="rgba(74,144,217,0.05)"/>
+      <polyline points="52,178 130,180 208,178 286,177 364,179 441,185 519,181 597,177 675,181 752,183 828,181"
+        fill="none" stroke="#4a90d9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+        stroke-dasharray="1200" stroke-dashoffset="1200">
+        <animate attributeName="stroke-dashoffset" from="1200" to="0" dur="1.5s" fill="freeze" begin="0.4s"/>
+      </polyline>
+      <circle cx="597" cy="89" r="4" fill="#c9a84c"/>
+      <text x="597" y="83" fill="#c9a84c" font-size="9" text-anchor="middle" font-family="monospace">máx 71,3%</text>
+      <text x="52"  y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2015</text>
+      <text x="208" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2017</text>
+      <text x="364" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2019</text>
+      <text x="519" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2021</text>
+      <text x="675" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2023</text>
+      <text x="828" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2025</text>
+      <rect x="540" y="262" width="9" height="9" rx="1" fill="#c9a84c"/><text x="555" y="271" fill="#8899bb" font-size="10" font-family="monospace">🇬🇧 RU (alto)</text>
+      <rect x="650" y="262" width="9" height="9" rx="1" fill="#4a90d9"/><text x="665" y="271" fill="#8899bb" font-size="10" font-family="monospace">🇺🇸 EEUU (estable)</text>
+    </svg>
+  </div>
+</div>
+
+<!-- ─── 10 · SECCIÓN 3 ─── -->
+<div class="slide" id="s10">
+  <div class="sec">
+    <div class="sec-num">03</div>
+    <div class="sec-in">
+      <div class="sec-badge red">Bloque 3</div>
+      <div class="sec-title">Composición del Comercio<br>e Introducción Teórica</div>
+      <div class="sec-topics">
+        <div class="stopic">Ventajas Comparativas Reveladas (VCR) por sector</div>
+        <div class="stopic">Índice de Grubel-Lloyd — comercio intraindustrial</div>
+        <div class="stopic">¿Por qué no Ricardo ni Heckscher-Ohlin?</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 11 · VCR + GRUBEL-LLOYD ─── -->
+<div class="slide" id="s11">
+  <div class="inner">
+    <div class="tag">Bloque 3 · Composición</div>
+    <div class="title">VCR e Índice de Grubel-Lloyd</div>
+    <div class="subtitle">Ambas potencias manufactureras — el comercio ocurre dentro de los mismos sectores</div>
+    <div class="col2">
+      <div>
+        <div class="card tbl" style="margin-bottom:12px;">
+          <div class="clabel">🇺🇸 VCR — EEUU</div>
+          <div style="margin-top:8px;">
+            <div class="vcr-row">
+              <div class="vcr-label"><span>Vehículos, tractores y velocípedos</span><span style="color:var(--accent)">4,34–6,26</span></div>
+              <div class="vcr-track"><div class="vcr-fill" style="width:72%;background:linear-gradient(90deg,var(--accent),rgba(74,144,217,0.4));"></div></div>
+            </div>
+            <div class="vcr-row">
+              <div class="vcr-label"><span>Manufacturas diversas</span><span style="color:var(--accent)">alto y estable</span></div>
+              <div class="vcr-track"><div class="vcr-fill" style="width:58%;background:linear-gradient(90deg,var(--accent),rgba(74,144,217,0.4));"></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="card tb">
+          <div class="clabel">🇬🇧 VCR — RU</div>
+          <div style="margin-top:8px;">
+            <div class="vcr-row">
+              <div class="vcr-label"><span>Manufacturas diversas</span><span style="color:var(--gold)">5,01–13,26</span></div>
+              <div class="vcr-track"><div class="vcr-fill" style="width:88%;background:linear-gradient(90deg,var(--gold),rgba(201,168,76,0.4));"></div></div>
+            </div>
+            <div class="vcr-row">
+              <div class="vcr-label"><span>Vidrio y sus manufacturas</span><span style="color:var(--gold)">alto y estable</span></div>
+              <div class="vcr-track"><div class="vcr-fill" style="width:62%;background:linear-gradient(90deg,var(--gold),rgba(201,168,76,0.4));"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card gn" style="margin-bottom:12px;">
+          <div class="clabel">Índice de Grubel-Lloyd (intraindustrial)</div>
+          <div class="cval" style="margin-top:6px;">0,56 – 0,67</div>
+          <div class="cdesc">Alto y estable en toda la serie 2014–2025. El intercambio ocurre <strong style="color:var(--green)">dentro de los mismos sectores</strong>.</div>
+        </div>
+        <div class="hl">
+          <p>Estos datos descartan los modelos de <strong>Ricardo</strong> (diferencias tecnológicas) y <strong>Heckscher-Ohlin</strong> (dotaciones de factores), ya que ambos países son economías avanzadas con capital y trabajo calificado <strong>muy similares</strong>.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 12 · DESCARTE MODELOS CLÁSICOS ─── -->
+<div class="slide" id="s12">
+  <div class="inner">
+    <div class="tag">Bloque 3 · Marco teórico</div>
+    <div class="title">¿Por qué fallan los modelos clásicos?</div>
+    <div class="subtitle">El punto de partida para entender el caso EEUU–RU</div>
+    <div class="col3" style="margin-top:12px;">
+      <div class="card trd" style="opacity:0.88;">
+        <div style="font-size:22px;margin-bottom:9px;">❌</div>
+        <div class="pillar-title">Modelo Ricardo</div>
+        <div class="pillar-text" style="font-size:11.5px;margin-top:7px;">Predice comercio <strong style="color:var(--cream)">interindustrial</strong> basado en diferencias tecnológicas.<br><br><span style="color:var(--red)">Falla porque:</span> EEUU y RU tienen tecnologías similares. Ambos exportan e importan los <em>mismos sectores</em>.</div>
+      </div>
+      <div class="card trd" style="opacity:0.88;">
+        <div style="font-size:22px;margin-bottom:9px;">❌</div>
+        <div class="pillar-title">Heckscher-Ohlin</div>
+        <div class="pillar-text" style="font-size:11.5px;margin-top:7px;">Predice especialización según <strong style="color:var(--cream)">dotación de factores</strong>.<br><br><span style="color:var(--red)">Falla porque:</span> Ambos países son intensivos en <em>capital y trabajo calificado</em> simultáneamente.</div>
+      </div>
+      <div class="card tgn">
+        <div style="font-size:22px;margin-bottom:9px;">✅</div>
+        <div class="pillar-title">Krugman (NTC)</div>
+        <div class="pillar-text" style="font-size:11.5px;margin-top:7px;">Explica comercio entre países <strong style="color:var(--cream)">similares</strong> mediante economías de escala, competencia monopolística y amor por la variedad.<br><br><span style="color:var(--green)">Confirma:</span> GL 0,56–0,67, HHI bajo, IC &gt; 1,10.</div>
+      </div>
+    </div>
+    <div style="margin-top:13px;padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:4px;display:flex;align-items:center;gap:12px;">
+      <div style="font-size:22px;">💡</div>
+      <div style="font-size:12px;color:var(--cream);line-height:1.6;">La clave: ambos países tienen <strong style="color:var(--gold-light)">dotaciones relativas similares</strong>. H-O requiere asimetría (capital ↔ trabajo). Aquí ambos son intensivos en ambos factores → el modelo no aplica.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 13 · SECCIÓN 4 ─── -->
+<div class="slide" id="s13">
+  <div class="sec">
+    <div class="sec-num">04</div>
+    <div class="sec-in">
+      <div class="sec-badge green">Bloque 4</div>
+      <div class="sec-title">Modelo Teórico<br>y Conclusiones</div>
+      <div class="sec-topics">
+        <div class="stopic">Nueva Teoría del Comercio — Krugman</div>
+        <div class="stopic">Supuestos clave: escala, imperfección, variedad</div>
+        <div class="stopic">Firmas Heterogéneas — Melitz</div>
+        <div class="stopic">Respuestas a las preguntas iniciales</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 14 · KRUGMAN ─── -->
+<div class="slide" id="s14">
+  <div class="inner">
+    <div class="tag">Bloque 4 · Teoría</div>
+    <div class="title">Nueva Teoría del Comercio (Krugman)</div>
+    <div class="subtitle">¿Por qué comercian dos economías con dotaciones similares?</div>
+    <div class="col3" style="margin-top:12px;">
+      <div class="pillar">
+        <div class="pillar-icon">⚙️</div>
+        <div class="pillar-title">Economías de Escala</div>
+        <div class="pillar-text">Industrias complejas (ej. automotriz) tienen costos fijos altos. La producción a gran escala reduce el costo promedio por unidad, incentivando la especialización.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">🏷️</div>
+        <div class="pillar-title">Competencia Imperfecta</div>
+        <div class="pillar-text">Las firmas producen bienes sustitutos cercanos pero no idénticos. Cada empresa tiene poder de mercado sobre su variedad específica.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">❤️</div>
+        <div class="pillar-title">Amor por la Variedad</div>
+        <div class="pillar-text">Los consumidores prefieren más variedades. Aunque RU produce autos, sus consumidores siguen demandando modelos estadounidenses (ej. Ford).</div>
+      </div>
+    </div>
+    <div class="quote" style="margin-top:17px;">
+      <p>"El comercio entre economías desarrolladas de similar dotación factoral se explica por economías de escala y la diferenciación de productos."</p>
+      <small>Krugman, Obstfeld & Melitz — Economía Internacional, 10.ª ed.</small>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 15 · MELITZ ─── -->
+<div class="slide" id="s15">
+  <div class="inner">
+    <div class="tag">Bloque 4 · Melitz</div>
+    <div class="title">Firmas Heterogéneas (Melitz)</div>
+    <div class="subtitle">La apertura comercial no beneficia a todos por igual — y eso es parte del mecanismo</div>
+    <div class="col2">
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="card bl">
+          <div class="clabel">Firmas eficientes 📈</div>
+          <div class="cdesc" style="font-size:12px;margin-top:4px;">Las industrias con mayor productividad pueden <strong style="color:var(--accent)">escalar, exportar y ganar participación de mercado</strong>.</div>
+        </div>
+        <div class="card rd">
+          <div class="clabel">Firmas ineficientes 📉</div>
+          <div class="cdesc" style="font-size:12px;margin-top:4px;">Las industrias menos competitivas son <strong style="color:var(--red)">desplazadas del mercado</strong> o deben reconvertirse, liberando recursos.</div>
+        </div>
+        <div class="card gn">
+          <div class="clabel">Bienestar del consumidor 🛒</div>
+          <div class="cdesc" style="font-size:12px;margin-top:4px;">Más variedades a menores precios para consumidores de <strong style="color:var(--green)">ambos países</strong>.</div>
+        </div>
+      </div>
+      <div>
+        <div class="hl" style="margin-bottom:13px;">
+          <p>Los <strong>bajos índices HHI</strong> validan este marco: la canasta exportadora diversificada es consecuencia directa de la reasignación de recursos que describe Melitz.</p>
+        </div>
+        <div class="card tgn">
+          <div class="clabel">Evidencia empírica</div>
+          <div style="margin-top:8px;font-size:13px;color:var(--cream);line-height:1.7;">
+            🇺🇸 HHI: <span style="color:var(--green);font-family:'DM Mono',monospace;">0,094 – 0,123</span><br>
+            🇬🇧 HHI: <span style="color:var(--green);font-family:'DM Mono',monospace;">0,093 – 0,195</span><br>
+            <span style="color:var(--muted);font-size:11px;">Ambos por debajo del umbral de concentración</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 16 · CONCLUSIONES ─── -->
+<div class="slide" id="s16">
+  <div class="inner">
+    <div class="tag">Conclusiones</div>
+    <div class="title">Respuestas a las preguntas iniciales</div>
+    <div class="subtitle">Síntesis del análisis empírico 2014–2025</div>
+    <div class="cbox" style="margin-top:10px;">
+      <div class="cbox-label">PREGUNTA 1 · CARACTERÍSTICAS Y EVOLUCIÓN</div>
+      <p>El comercio bilateral muestra un <strong>crecimiento sostenido</strong> con balanza favorable a EEUU desde 2022. Las canastas son <strong>altamente diversificadas</strong> (HHI bajo), la complementariedad es elevada y estable, y EEUU consolidó un <strong>sesgo geográfico positivo</strong> hacia RU. La diferencia en apertura responde al tamaño de cada mercado interno.</p>
+    </div>
+    <div class="cbox">
+      <div class="cbox-label" style="color:var(--accent);">PREGUNTA 2 · PATRÓN Y MODELO TEÓRICO</div>
+      <p>El patrón es claramente <strong>intraindustrial</strong> (Grubel-Lloyd: 0,56–0,67). El modelo que mejor lo explica es la <strong>Competencia Monopolística de Krugman</strong>, complementado por <strong>Firmas Heterogéneas de Melitz</strong>: economías de escala + amor por la variedad + reasignación de recursos.</p>
+    </div>
+    <div style="display:flex;gap:10px;margin-top:10px;">
+      <div style="flex:1;background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:4px;padding:10px;text-align:center;"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Modelos descartados</div><div style="font-size:12.5px;color:var(--cream);margin-top:4px;">Ricardo · Heckscher-Ohlin</div></div>
+      <div style="flex:1;background:rgba(74,144,217,0.08);border:1px solid rgba(74,144,217,0.2);border-radius:4px;padding:10px;text-align:center;"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Modelo adoptado</div><div style="font-size:12.5px;color:var(--accent);margin-top:4px;">Krugman + Melitz</div></div>
+      <div style="flex:1;background:rgba(74,201,122,0.08);border:1px solid rgba(74,201,122,0.2);border-radius:4px;padding:10px;text-align:center;"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Patrón dominante</div><div style="font-size:12.5px;color:var(--green);margin-top:4px;">Intraindustrial</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 17 · CIERRE ─── -->
+<div class="slide" id="s17">
+  <div class="cover" style="background:linear-gradient(135deg,#091220 0%,#0d1f3e 60%,#091220 100%);">
+    <div class="c-grid"></div>
+    <div class="c-circle" style="opacity:0.45;"></div>
+    <div class="c-inner">
+      <div class="c-eye" style="color:var(--green);">Fin de la presentación</div>
+      <div class="c-title" style="font-size:36px;">Gracias por<br><em style="color:var(--gold-light)">su atención</em></div>
+      <div class="c-div" style="background:linear-gradient(90deg,var(--green),transparent);"></div>
+      <div style="display:flex;gap:14px;margin-top:16px;flex-wrap:wrap;">
+        <div style="background:rgba(74,144,217,0.08);border:1px solid rgba(74,144,217,0.2);border-radius:4px;padding:11px 15px;"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:4px;">PATRÓN</div><div style="font-size:13px;color:var(--accent);">Intraindustrial (GL 0,56–0,67)</div></div>
+        <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:4px;padding:11px 15px;"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:4px;">MODELO</div><div style="font-size:13px;color:var(--gold);">Krugman + Melitz</div></div>
+        <div style="background:rgba(74,201,122,0.08);border:1px solid rgba(74,201,122,0.2);border-radius:4px;padding:11px 15px;"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:4px;">EXPORTACIONES 2025</div><div style="font-size:13px;color:var(--green);">US 97B &gt; UK 86.9B</div></div>
+      </div>
+      <div class="c-flags" style="margin-top:26px;">🇺🇸 🇬🇧</div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /stage -->
+
+<div class="dots-nav" id="dots"></div>
+<div class="kbd-hint">← → espacio para navegar</div>
+
+<script>
+  const TOTAL = 18;
+  let cur = 0;
+
+  const dotsCont = document.getElementById('dots');
+  for (let i = 0; i < TOTAL; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsCont.appendChild(d);
+  }
+
+  function goTo(n) {
+    const slides = document.querySelectorAll('.slide');
+    const dots   = document.querySelectorAll('.dot');
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = Math.max(0, Math.min(n, TOTAL - 1));
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    document.getElementById('counter').textContent = (cur + 1) + ' / ' + TOTAL;
+    document.getElementById('prog').style.width = ((cur + 1) / TOTAL * 100) + '%';
+  }
+
+  function nextSlide() { goTo(cur + 1); }
+  function prevSlide() { goTo(cur - 1); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')                    { e.preventDefault(); prevSlide(); }
+  });
+</script>
+</body>
+</html>

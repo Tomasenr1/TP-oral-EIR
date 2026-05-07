@@ -174,7 +174,7 @@
   <div class="nav-brand">UADE · Comercio Internacional · Grupo 5</div>
   <div class="nav-right">
     <button class="btn" onclick="prevSlide()">← Prev</button>
-    <div class="counter" id="counter">1 / 18</div>
+    <div class="counter" id="counter">1 / 19</div>
     <button class="btn" onclick="nextSlide()">Next →</button>
   </div>
 </nav>
@@ -276,25 +276,48 @@
     <div class="tag">Bloque 1 · Balanza</div>
     <div class="title">Balanza Comercial: el gran giro</div>
     <div class="subtitle">Dos etapas distintas en la última década</div>
-    <div class="col2">
-      <div>
-        <div class="tl">
-          <div class="tl-row"><div class="tl-dot"></div><div class="tl-year">2014–20</div><div class="tl-text">🇬🇧 exportaba <strong>más</strong> que importaba.<br>UK: USD 64.197 M &nbsp;|&nbsp; US: USD 53.808 M</div></div>
-          <div class="tl-row"><div class="tl-dot b"></div><div class="tl-year">2022</div><div class="tl-text">Punto de inflexión: EEUU supera a RU.<br>US: <strong>USD 77.300 M</strong> &nbsp;|&nbsp; UK: USD 63.818 M</div></div>
-          <div class="tl-row"><div class="tl-dot g"></div><div class="tl-year">2025</div><div class="tl-text">Brecha en máximo histórico.<br>US: <strong>USD 97.009 M</strong> &nbsp;|&nbsp; UK: USD 86.946 M</div></div>
+    <div class="tl" style="margin-bottom:16px;">
+      <div class="tl-row"><div class="tl-dot"></div><div class="tl-year">2014–20</div><div class="tl-text">🇬🇧 exportaba <strong>más</strong> que importaba. &nbsp; UK: USD 64.197 M &nbsp;|&nbsp; US: USD 53.808 M</div></div>
+      <div class="tl-row"><div class="tl-dot b"></div><div class="tl-year">2022</div><div class="tl-text">Punto de inflexión: EEUU supera a RU. &nbsp; US: <strong>USD 77.300 M</strong> &nbsp;|&nbsp; UK: USD 63.818 M</div></div>
+      <div class="tl-row"><div class="tl-dot g"></div><div class="tl-year">2025</div><div class="tl-text">Brecha en máximo histórico. &nbsp; US: <strong>USD 97.009 M</strong> &nbsp;|&nbsp; UK: USD 86.946 M</div></div>
+    </div>
+    <div class="card" style="padding:18px 20px;background:rgba(255,255,255,0.03);">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+        <div class="clabel" style="margin:0;">Exportaciones bilaterales seleccionadas (miles USD)</div>
+        <div style="display:flex;gap:14px;">
+          <div class="leg"><div class="leg-dot" style="background:var(--accent)"></div><span style="font-size:11px;color:var(--cream);">🇺🇸 EEUU</span></div>
+          <div class="leg"><div class="leg-dot" style="background:var(--gold)"></div><span style="font-size:11px;color:var(--cream);">🇬🇧 RU</span></div>
         </div>
       </div>
-      <div class="card" style="padding:15px 13px;">
-        <div class="clabel">Exportaciones bilaterales seleccionadas (USD)</div>
-        <div class="minibars">
-          <div class="mbar-grp"><div class="mbar us" style="height:33px"></div><div class="mbar uk" style="height:38px"></div><div class="mbar-yr">2014</div></div>
-          <div class="mbar-grp"><div class="mbar us" style="height:36px"></div><div class="mbar uk" style="height:42px"></div><div class="mbar-yr">2016</div></div>
-          <div class="mbar-grp"><div class="mbar us" style="height:39px"></div><div class="mbar uk" style="height:42px"></div><div class="mbar-yr">2018</div></div>
-          <div class="mbar-grp"><div class="mbar us" style="height:30px"></div><div class="mbar uk" style="height:33px"></div><div class="mbar-yr">2020</div></div>
-          <div class="mbar-grp"><div class="mbar us" style="height:49px"></div><div class="mbar uk" style="height:35px"></div><div class="mbar-yr">2022</div></div>
-          <div class="mbar-grp"><div class="mbar us" style="height:62px"></div><div class="mbar uk" style="height:54px"></div><div class="mbar-yr">2025</div></div>
+      <div class="minibars" style="height:100px;margin:14px 0 8px;">
+        <div class="mbar-grp"><div class="mbar us" style="height:46px"></div><div class="mbar uk" style="height:53px"></div><div class="mbar-yr" style="font-size:9px;">2014</div></div>
+        <div class="mbar-grp"><div class="mbar us" style="height:50px"></div><div class="mbar uk" style="height:58px"></div><div class="mbar-yr" style="font-size:9px;">2016</div></div>
+        <div class="mbar-grp"><div class="mbar us" style="height:54px"></div><div class="mbar uk" style="height:58px"></div><div class="mbar-yr" style="font-size:9px;">2018</div></div>
+        <div class="mbar-grp"><div class="mbar us" style="height:42px"></div><div class="mbar uk" style="height:46px"></div><div class="mbar-yr" style="font-size:9px;">2020</div></div>
+        <div class="mbar-grp" style="position:relative;">
+          <div style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:8px;color:var(--gold);font-family:monospace;white-space:nowrap;font-weight:600;">↓ INFLEXIÓN</div>
+          <div class="mbar us" style="height:68px;box-shadow:0 0 8px rgba(74,144,217,0.4);"></div>
+          <div class="mbar uk" style="height:48px;box-shadow:0 0 8px rgba(201,168,76,0.4);"></div>
+          <div class="mbar-yr" style="font-size:9px;color:var(--gold);font-weight:600;">2022</div>
         </div>
-        <div class="legend"><div class="leg"><div class="leg-dot" style="background:var(--accent)"></div>🇺🇸 EEUU</div><div class="leg"><div class="leg-dot" style="background:var(--gold)"></div>🇬🇧 RU</div></div>
+        <div class="mbar-grp"><div class="mbar us" style="height:86px"></div><div class="mbar uk" style="height:75px"></div><div class="mbar-yr" style="font-size:9px;">2025</div></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:9px;color:var(--muted);font-family:monospace;padding:0 4px;">
+        <span>0</span><span>25B</span><span>50B</span><span>75B</span><span style="color:var(--green);font-weight:600;">100B</span>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;">
+      <div style="background:rgba(74,144,217,0.08);border:1px solid rgba(74,144,217,0.2);border-radius:3px;padding:9px 11px;">
+        <div style="font-size:9px;color:var(--accent);font-family:monospace;margin-bottom:3px;">1. POST-BREXIT</div>
+        <div style="font-size:10.5px;color:var(--cream);line-height:1.5;">RU fuera de la UE desde 2020 → nuevos acuerdos favorecieron a EEUU</div>
+      </div>
+      <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);border-radius:3px;padding:9px 11px;">
+        <div style="font-size:9px;color:var(--gold);font-family:monospace;margin-bottom:3px;">2. POST-COVID</div>
+        <div style="font-size:10.5px;color:var(--cream);line-height:1.5;">Economía estadounidense se recuperó más rápido → impulso exportador</div>
+      </div>
+      <div style="background:rgba(74,201,122,0.08);border:1px solid rgba(74,201,122,0.2);border-radius:3px;padding:9px 11px;">
+        <div style="font-size:9px;color:var(--green);font-family:monospace;margin-bottom:3px;">3. POLÍTICAS</div>
+        <div style="font-size:10.5px;color:var(--cream);line-height:1.5;">EEUU intensificó presión comercial sobre manufacturas británicas</div>
       </div>
     </div>
   </div>
@@ -305,48 +328,62 @@
   <div class="inner" style="padding-bottom:26px;">
     <div class="tag">Gráfico · Evolución</div>
     <div class="title" style="font-size:27px;">Exportaciones bilaterales 2014–2025</div>
-    <div class="subtitle">Valores en miles de USD · Punto de inflexión en 2022</div>
-    <svg viewBox="0 0 840 280" style="width:100%;margin-top:6px;">
-      <line x1="52" y1="18" x2="52" y2="232" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-      <line x1="52" y1="232" x2="828" y2="232" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-      <line x1="52" y1="180" x2="828" y2="180" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
-      <line x1="52" y1="127" x2="828" y2="127" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
-      <line x1="52" y1="73"  x2="828" y2="73"  stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
-      <text x="45" y="235" fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">0</text>
-      <text x="45" y="183" fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">40B</text>
-      <text x="45" y="130" fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">70B</text>
-      <text x="45" y="76"  fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">100B</text>
-      <!-- EEUU: y = 232 - (val/100000)*159 -->
-      <polyline points="52,148 122,139 192,146 262,144 332,137 402,143 472,151 542,142 612,107 682,112 752,104 822,79"
-        fill="none" stroke="#4a90d9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+    <div class="subtitle">Valores en miles de USD · Punto de inflexión marcado en 2022</div>
+    <svg viewBox="0 0 840 300" style="width:100%;margin-top:6px;">
+      <!-- grid con más líneas -->
+      <line x1="52" y1="18" x2="52" y2="250" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+      <line x1="52" y1="250" x2="828" y2="250" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+      <!-- horizontal grid lines -->
+      <line x1="52" y1="210" x2="828" y2="210" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="52" y1="170" x2="828" y2="170" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="52" y1="130" x2="828" y2="130" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="52" y1="90"  x2="828" y2="90"  stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="52" y1="50"  x2="828" y2="50"  stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- y labels with better spacing -->
+      <text x="45" y="254" fill="#f5f0e8" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">0</text>
+      <text x="45" y="214" fill="#e8c97e" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">25B</text>
+      <text x="45" y="174" fill="#e8c97e" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">50B</text>
+      <text x="45" y="134" fill="#e8c97e" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">75B</text>
+      <text x="45" y="94"  fill="#e8c97e" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">100B</text>
+      <text x="45" y="54"  fill="#e8c97e" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">125B</text>
+      <!-- EEUU: y = 250 - (val/100000)*200 -->
+      <polyline points="52,143 122,132 192,140 262,138 332,130 402,137 472,147 542,136 612,96 682,102 752,92 822,56"
+        fill="none" stroke="#4a90d9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
         stroke-dasharray="1200" stroke-dashoffset="1200">
         <animate attributeName="stroke-dashoffset" from="1200" to="0" dur="1.5s" fill="freeze" begin="0.1s"/>
       </polyline>
-      <!-- RU: 64197,69381,61568,59098,65985,73928,57379,59301,63818,71175,71318,86946 -->
-      <polyline points="52,130 122,122 192,135 262,138 332,127 402,114 472,141 542,138 612,130 682,120 752,120 822,94"
-        fill="none" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+      <!-- UK: 64197→121, 69381→111, 61568→127, 59098→132, 65985→118, 73928→102, 57379→135, 59301→131, 63818→122, 71175→108, 71318→108, 86946→76 -->
+      <polyline points="52,121 122,111 192,127 262,132 332,118 402,102 472,135 542,131 612,122 682,108 752,108 822,76"
+        fill="none" stroke="#c9a84c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
         stroke-dasharray="1200" stroke-dashoffset="1200">
         <animate attributeName="stroke-dashoffset" from="1200" to="0" dur="1.5s" fill="freeze" begin="0.4s"/>
       </polyline>
-      <!-- inflection -->
-      <line x1="612" y1="28" x2="612" y2="232" stroke="rgba(201,168,76,0.25)" stroke-width="1" stroke-dasharray="3,3"/>
-      <text x="612" y="24" fill="#c9a84c" font-size="9" text-anchor="middle" font-family="monospace">2022 ↑</text>
-      <!-- endpoints -->
-      <circle cx="822" cy="79" r="4" fill="#4a90d9"/>
-      <text x="822" y="72" fill="#4a90d9" font-size="9" text-anchor="middle" font-family="monospace">97B</text>
-      <circle cx="822" cy="94" r="4" fill="#c9a84c"/>
-      <text x="822" y="108" fill="#c9a84c" font-size="9" text-anchor="middle" font-family="monospace">86.9B</text>
+      <!-- inflection line with explanation -->
+      <line x1="612" y1="28" x2="612" y2="250" stroke="rgba(201,168,76,0.35)" stroke-width="2" stroke-dasharray="5,5"/>
+      <rect x="560" y="20" width="104" height="18" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.4)" stroke-width="1" rx="2"/>
+      <text x="612" y="32" fill="#c9a84c" font-size="10" text-anchor="middle" font-family="monospace" font-weight="600">2022 INFLEXIÓN</text>
+      <!-- data points at key years -->
+      <circle cx="52" cy="143" r="3" fill="#4a90d9" opacity="0.7"/>
+      <circle cx="52" cy="121" r="3" fill="#c9a84c" opacity="0.7"/>
+      <circle cx="612" cy="96" r="4" fill="#4a90d9" stroke="#fff" stroke-width="1"/>
+      <circle cx="612" cy="122" r="4" fill="#c9a84c" stroke="#fff" stroke-width="1"/>
+      <circle cx="822" cy="56" r="5" fill="#4a90d9" stroke="#fff" stroke-width="1.5"/>
+      <text x="822" y="48" fill="#4a90d9" font-size="10" text-anchor="middle" font-family="monospace" font-weight="700">97B</text>
+      <circle cx="822" cy="76" r="5" fill="#c9a84c" stroke="#fff" stroke-width="1.5"/>
+      <text x="822" y="90" fill="#c9a84c" font-size="10" text-anchor="middle" font-family="monospace" font-weight="700">86.9B</text>
       <!-- x labels -->
-      <text x="52"  y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2014</text>
-      <text x="192" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2016</text>
-      <text x="332" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2018</text>
-      <text x="472" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2020</text>
-      <text x="612" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2022</text>
-      <text x="752" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2024</text>
-      <rect x="560" y="262" width="9" height="9" rx="1" fill="#4a90d9"/>
-      <text x="575" y="271" fill="#8899bb" font-size="10" font-family="monospace">🇺🇸 EEUU</text>
-      <rect x="650" y="262" width="9" height="9" rx="1" fill="#c9a84c"/>
-      <text x="665" y="271" fill="#8899bb" font-size="10" font-family="monospace">🇬🇧 RU</text>
+      <text x="52"  y="265" fill="#8899bb" font-size="9" text-anchor="middle" font-family="monospace">2014</text>
+      <text x="192" y="265" fill="#8899bb" font-size="9" text-anchor="middle" font-family="monospace">2016</text>
+      <text x="332" y="265" fill="#8899bb" font-size="9" text-anchor="middle" font-family="monospace">2018</text>
+      <text x="472" y="265" fill="#8899bb" font-size="9" text-anchor="middle" font-family="monospace">2020</text>
+      <text x="612" y="265" fill="#4a90d9" font-size="9" text-anchor="middle" font-family="monospace" font-weight="600">2022</text>
+      <text x="752" y="265" fill="#8899bb" font-size="9" text-anchor="middle" font-family="monospace">2024</text>
+      <text x="822" y="265" fill="#8899bb" font-size="9" text-anchor="middle" font-family="monospace">2025</text>
+      <!-- legend -->
+      <rect x="560" y="280" width="10" height="10" rx="2" fill="#4a90d9"/>
+      <text x="576" y="289" fill="#e8c97e" font-size="11" font-family="monospace" font-weight="500">🇺🇸 EEUU</text>
+      <rect x="660" y="280" width="10" height="10" rx="2" fill="#c9a84c"/>
+      <text x="676" y="289" fill="#e8c97e" font-size="11" font-family="monospace" font-weight="500">🇬🇧 RU</text>
     </svg>
   </div>
 </div>
@@ -443,40 +480,59 @@
     <div class="tag">Gráfico · Apertura</div>
     <div class="title" style="font-size:27px;">Índice de Apertura Comercial 2015–2025</div>
     <div class="subtitle">EEUU bajo y estable &nbsp;·&nbsp; RU alto y volátil — ambos responden al tamaño del mercado</div>
-    <svg viewBox="0 0 840 280" style="width:100%;margin-top:6px;">
-      <line x1="52" y1="18" x2="52" y2="232" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-      <line x1="52" y1="232" x2="828" y2="232" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-      <line x1="52" y1="183" x2="828" y2="183" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+    <svg viewBox="0 0 840 300" style="width:100%;margin-top:6px;">
+      <line x1="52" y1="18" x2="52" y2="250" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+      <line x1="52" y1="250" x2="828" y2="250" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+      <!-- horizontal grid lines -->
+      <line x1="52" y1="220" x2="828" y2="220" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="52" y1="190" x2="828" y2="190" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="52" y1="160" x2="828" y2="160" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
       <line x1="52" y1="130" x2="828" y2="130" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
-      <line x1="52" y1="76"  x2="828" y2="76"  stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
-      <text x="45" y="235" fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">0%</text>
-      <text x="45" y="186" fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">28%</text>
-      <text x="45" y="133" fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">55%</text>
-      <text x="45" y="79"  fill="#8899bb" font-size="9" text-anchor="end" font-family="monospace">80%</text>
-      <!-- RU: y=232-(val/80)*159 -->
-      <polygon points="52,118 130,113 208,104 286,101 364,101 441,113 519,113 597,89 675,97 752,99 828,99 828,232 52,232" fill="rgba(201,168,76,0.05)"/>
-      <polyline points="52,118 130,113 208,104 286,101 364,101 441,113 519,113 597,89 675,97 752,99 828,99"
-        fill="none" stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+      <line x1="52" y1="100" x2="828" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="52" y1="70"  x2="828" y2="70"  stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <line x1="52" y1="40"  x2="828" y2="40"  stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4,4"/>
+      <!-- y labels -->
+      <text x="45" y="254" fill="#f5f0e8" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">0%</text>
+      <text x="45" y="224" fill="#e8c97e" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">10%</text>
+      <text x="45" y="194" fill="#e8c97e" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">20%</text>
+      <text x="45" y="164" fill="#e8c97e" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">30%</text>
+      <text x="45" y="134" fill="#e8c97e" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">40%</text>
+      <text x="45" y="104" fill="#e8c97e" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">50%</text>
+      <text x="45" y="74"  fill="#e8c97e" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">60%</text>
+      <text x="45" y="44"  fill="#e8c97e" font-size="10" text-anchor="end" font-family="monospace" font-weight="500">70%</text>
+      <!-- RU: y=250-(val/80)*210 → adjusted for 0-80% range -->
+      <polygon points="52,99 130,93 208,83 286,79 364,79 441,93 519,93 597,64 675,72 752,75 828,74 828,250 52,250" fill="rgba(201,168,76,0.06)"/>
+      <polyline points="52,99 130,93 208,83 286,79 364,79 441,93 519,93 597,64 675,72 752,75 828,74"
+        fill="none" stroke="#c9a84c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
         stroke-dasharray="1200" stroke-dashoffset="1200">
         <animate attributeName="stroke-dashoffset" from="1200" to="0" dur="1.5s" fill="freeze" begin="0.1s"/>
       </polyline>
-      <!-- EEUU: y=232-(val/80)*159 (max ~27.4) -->
-      <polygon points="52,178 130,180 208,178 286,177 364,179 441,185 519,181 597,177 675,181 752,183 828,181 828,232 52,232" fill="rgba(74,144,217,0.05)"/>
+      <!-- EEUU: ~27% → y=250-(27/80)*210=179 -->
+      <polygon points="52,178 130,180 208,178 286,177 364,179 441,185 519,181 597,177 675,181 752,183 828,181 828,250 52,250" fill="rgba(74,144,217,0.06)"/>
       <polyline points="52,178 130,180 208,178 286,177 364,179 441,185 519,181 597,177 675,181 752,183 828,181"
-        fill="none" stroke="#4a90d9" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+        fill="none" stroke="#4a90d9" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
         stroke-dasharray="1200" stroke-dashoffset="1200">
         <animate attributeName="stroke-dashoffset" from="1200" to="0" dur="1.5s" fill="freeze" begin="0.4s"/>
       </polyline>
-      <circle cx="597" cy="89" r="4" fill="#c9a84c"/>
-      <text x="597" y="83" fill="#c9a84c" font-size="9" text-anchor="middle" font-family="monospace">máx 71,3%</text>
-      <text x="52"  y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2015</text>
-      <text x="208" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2017</text>
-      <text x="364" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2019</text>
-      <text x="519" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2021</text>
-      <text x="675" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2023</text>
-      <text x="828" y="245" fill="#8899bb" font-size="8.5" text-anchor="middle" font-family="monospace">2025</text>
-      <rect x="540" y="262" width="9" height="9" rx="1" fill="#c9a84c"/><text x="555" y="271" fill="#8899bb" font-size="10" font-family="monospace">🇬🇧 RU (alto)</text>
-      <rect x="650" y="262" width="9" height="9" rx="1" fill="#4a90d9"/><text x="665" y="271" fill="#8899bb" font-size="10" font-family="monospace">🇺🇸 EEUU (estable)</text>
+      <!-- max point annotation -->
+      <circle cx="597" cy="64" r="5" fill="#c9a84c" stroke="#fff" stroke-width="1.5"/>
+      <rect x="540" y="50" width="114" height="16" fill="rgba(201,168,76,0.15)" stroke="rgba(201,168,76,0.4)" stroke-width="1" rx="2"/>
+      <text x="597" y="61" fill="#c9a84c" font-size="9" text-anchor="middle" font-family="monospace" font-weight="600">RU máx 71,3% (2022)</text>
+      <!-- current values -->
+      <circle cx="828" cy="74" r="4" fill="#c9a84c" stroke="#fff" stroke-width="1"/>
+      <text x="828" y="66" fill="#c9a84c" font-size="10" text-anchor="middle" font-family="monospace" font-weight="700">67,4%</text>
+      <circle cx="828" cy="181" r="4" fill="#4a90d9" stroke="#fff" stroke-width="1"/>
+      <text x="828" y="173" fill="#4a90d9" font-size="10" text-anchor="middle" font-family="monospace" font-weight="700">25,2%</text>
+      <!-- x labels -->
+      <text x="52"  y="265" fill="#8899bb" font-size="9" text-anchor="middle" font-family="monospace">2015</text>
+      <text x="208" y="265" fill="#8899bb" font-size="9" text-anchor="middle" font-family="monospace">2017</text>
+      <text x="364" y="265" fill="#8899bb" font-size="9" text-anchor="middle" font-family="monospace">2019</text>
+      <text x="519" y="265" fill="#8899bb" font-size="9" text-anchor="middle" font-family="monospace">2021</text>
+      <text x="675" y="265" fill="#8899bb" font-size="9" text-anchor="middle" font-family="monospace">2023</text>
+      <text x="828" y="265" fill="#8899bb" font-size="9" text-anchor="middle" font-family="monospace">2025</text>
+      <!-- legend -->
+      <rect x="540" y="280" width="10" height="10" rx="2" fill="#c9a84c"/><text x="556" y="289" fill="#e8c97e" font-size="11" font-family="monospace" font-weight="500">🇬🇧 RU (alto, volátil)</text>
+      <rect x="680" y="280" width="10" height="10" rx="2" fill="#4a90d9"/><text x="696" y="289" fill="#e8c97e" font-size="11" font-family="monospace" font-weight="500">🇺🇸 EEUU (bajo, estable)</text>
     </svg>
   </div>
 </div>
@@ -661,7 +717,70 @@
   </div>
 </div>
 
-<!-- ─── 16 · CONCLUSIONES ─── -->
+<!-- ─── 16 · KRUGMAN BIOGRAPHY ─── -->
+<div class="slide" id="s16">
+  <div class="inner">
+    <div class="tag">Bloque 4 · Fundamentación</div>
+    <div class="title" style="font-size:29px;">Paul Krugman y la Nueva Teoría del Comercio</div>
+    <div class="subtitle">Premio Nobel de Economía 2008 — Por qué su modelo explica este comercio bilateral</div>
+    <div class="col2">
+      <div>
+        <div class="card tbl" style="margin-bottom:13px;">
+          <div class="clabel">📚 Biografía académica</div>
+          <div style="font-size:12px;color:var(--cream);line-height:1.65;margin-top:7px;">
+            <strong style="color:var(--accent);">Paul Robin Krugman</strong> (Albany, NY, 1953) es economista estadounidense, profesor del MIT y Princeton, columnista del New York Times.<br><br>
+            <strong style="color:var(--accent);">Premio Nobel de Economía 2008</strong> "por su análisis de los patrones de comercio y la localización de la actividad económica".<br><br>
+            Revolucionó la teoría del comercio internacional al demostrar que países con <strong>similares dotaciones factoriales</strong> comercian intensamente entre sí — contradiciendo modelos clásicos.
+          </div>
+        </div>
+        <div class="card tgn">
+          <div class="clabel">🎯 Contribución clave</div>
+          <div style="font-size:11.5px;color:var(--cream);line-height:1.6;margin-top:7px;">
+            Integró <strong style="color:var(--green)">economías de escala</strong> y <strong style="color:var(--green)">competencia monopolística</strong> al análisis del comercio. Explicó por qué:
+            <ul style="margin:8px 0 0 18px;line-height:1.8;">
+              <li>Alemania exporta e importa automóviles</li>
+              <li>Francia comercia vinos con Italia</li>
+              <li>EEUU y RU intercambian manufacturas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="border-top:3px solid var(--gold);margin-bottom:13px;padding:19px 17px;">
+          <div class="clabel">✅ Por qué este modelo explica EEUU–RU</div>
+          <div style="display:flex;flex-direction:column;gap:11px;margin-top:9px;">
+            <div style="display:flex;gap:10px;align-items:start;">
+              <div style="font-size:18px;flex-shrink:0;">1️⃣</div>
+              <div style="font-size:12px;color:var(--cream);line-height:1.6;"><strong style="color:var(--gold-light)">Dotaciones similares:</strong> Ambos intensivos en capital y trabajo calificado → H-O no aplica.</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:start;">
+              <div style="font-size:18px;flex-shrink:0;">2️⃣</div>
+              <div style="font-size:12px;color:var(--cream);line-height:1.6;"><strong style="color:var(--gold-light)">Comercio intraindustrial:</strong> GL = 0,56–0,67 confirma intercambio dentro de los mismos sectores.</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:start;">
+              <div style="font-size:18px;flex-shrink:0;">3️⃣</div>
+              <div style="font-size:12px;color:var(--cream);line-height:1.6;"><strong style="color:var(--gold-light)">Diversificación:</strong> HHI bajo en ambos → canastas exportadoras variadas, no concentradas.</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:start;">
+              <div style="font-size:18px;flex-shrink:0;">4️⃣</div>
+              <div style="font-size:12px;color:var(--cream);line-height:1.6;"><strong style="color:var(--gold-light)">Economías de escala:</strong> Industrias automotriz, farmacéutica y manufacturera requieren producción masiva.</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:start;">
+              <div style="font-size:18px;flex-shrink:0;">5️⃣</div>
+              <div style="font-size:12px;color:var(--cream);line-height:1.6;"><strong style="color:var(--gold-light)">Amor por la variedad:</strong> Consumidores de ambos países demandan marcas y diseños específicos del otro.</div>
+            </div>
+          </div>
+        </div>
+        <div class="quote" style="margin:0;padding-left:15px;">
+          <p style="font-size:13px;">"Los países comercian principalmente para aprovechar economías de escala, no solo por diferencias en sus recursos."</p>
+          <small>— P. Krugman, Economía Internacional (2015)</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── 17 · CONCLUSIONES ─── -->
 <div class="slide" id="s16">
   <div class="inner">
     <div class="tag">Conclusiones</div>
@@ -708,7 +827,7 @@
 <div class="kbd-hint">← → espacio para navegar</div>
 
 <script>
-  const TOTAL = 18;
+  const TOTAL = 19;
   let cur = 0;
 
   const dotsCont = document.getElementById('dots');
